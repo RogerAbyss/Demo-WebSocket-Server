@@ -18,10 +18,10 @@ wss.on('connection', function connection(ws, req) {
         var log = 'Received: ' + message
         console.log(log);
 
-         for(socket in sockets) 
+         for(ip in sockets)
          {
-         	if (socket != ws) {
-         		socket.send(message)
+         	if (sockets[ip] != ws) {
+                sockets[ip].send(message)
          	}
          }
     });
