@@ -1,0 +1,18 @@
+{
+  "apps" : [{
+    "name"        : "WebSocketTry",
+    "script"      : "app.js",
+    "watch"       : true,
+    "node_args"   : "--harmony",
+    "merge_logs"  : true,
+    "cwd"         : "./",
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+      "NODE_ENV": "production"
+    },
+    "error_file" : "./logs/app-err.log",  // 错误日志路径
+    "out_file"   : "./logs/app-out.log",  // 普通日志路径
+  }]
+}
