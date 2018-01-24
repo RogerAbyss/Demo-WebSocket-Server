@@ -1,5 +1,5 @@
 {
-  "name": "websocket",
+  "name": "node_websocket",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,8 +10,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/username/repository.git"
-  }
+    "url": "git@github.com:RogerAbyss/node_websocket.git"
+  },
   "dependencies": {
     "ws": "^4.0.0"
   }
