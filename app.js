@@ -4,6 +4,7 @@ const http = require('http');
 const server = http.createServer(function (req, res) { res.writeHead(200, {'Content-Type': 'text/plain'}); res.end('Websocket Server Success\n'); }).listen(9999, '0.0.0.0');
 const wss = new WebSocket.Server({ server: server});
 
+var sockets = {};
 /**
  * Connection
  */
@@ -11,14 +12,21 @@ const wss = new WebSocket.Server({ server: server});
 wss.on('connection', function connection(ws, req) {
     var ip = req.connection.remoteAddress
 
+    sockets[ip] = ws;
+
     ws.on('message', function incoming(message) {
         var log = 'Received: ' + message
         console.log(log);
-        // console.dir(req)
-        ws.send(log);
+
+         for(socket in sockets) 
+         {
+         	if (socket != ws) {
+         		socket.send(message)
+         	}
+         }
     });
 
-    ws.send('%s,连接成功!',ip);
+    ws.send(ip + '连接成功!');
 });
 
 /**
@@ -27,7 +35,7 @@ wss.on('connection', function connection(ws, req) {
 
 wss.on('disconnect', function connection(ws, req) {
     var ip = req.connection.remoteAddress
-    ws.send('%s,断开了连接!',ip);
+    ws.send(ip + '断开了连接!');
 });
 
 /**
