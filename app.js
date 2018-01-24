@@ -14,7 +14,7 @@ wss.on('connection', function connection(ws, req) {
     ws.on('message', function incoming(message) {
         var log = 'Received: ' + message
         console.log(log);
-        console.dir(req)
+        // console.dir(req)
         ws.send(log);
     });
 
