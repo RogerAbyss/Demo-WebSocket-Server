@@ -5,6 +5,7 @@ const server = http.createServer(function (req, res) { res.writeHead(200, {'Cont
 const wss = new WebSocket.Server({ server: server});
 
 var sockets = {};
+
 /**
  * Connection
  */
@@ -35,8 +36,17 @@ wss.on('connection', function connection(ws, req) {
 
 wss.on('disconnect', function connection(ws, req) {
     var ip = req.connection.remoteAddress
+
+    sockets[ip] = nil;
     ws.send(ip + '断开了连接!');
 });
+
+/**
+ * ping/pong
+ */
+function heartbeat() {}
+wss.on('ping', heartbeat);
+wss.on('pong', heartbeat);
 
 /**
  * Error
