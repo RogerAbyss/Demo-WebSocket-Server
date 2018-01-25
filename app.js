@@ -39,8 +39,8 @@ wss.on('connection', function connection(ws, req) {
          }
     });
 
-    /** 登录成功, 群发通知 */
-    wss.send(ip + '连接成功!');
+    /** 登录成功, 发送通知 */
+    ws.send(ip + '连接成功!');
 });
 
 /**
@@ -53,8 +53,8 @@ wss.on('disconnect', function connection(ws, req) {
     /** 断开连接, 释放socket */
     sockets[ip] = nil;
 
-    /** 断开连接, 群发通知 */
-    wss.send(ip + '断开了连接!');
+    /** 断开连接, 发送通知 */
+    ws.send(ip + '断开了连接!');
 });
 
 /**
